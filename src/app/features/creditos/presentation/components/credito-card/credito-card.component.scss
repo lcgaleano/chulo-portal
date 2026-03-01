@@ -1,0 +1,47 @@
+.credito-card {
+  margin-bottom: 16px;
+
+  mat-card-header {
+    margin-bottom: 16px;
+  }
+
+  mat-card-content {
+    .status-row {
+      margin-bottom: 16px;
+
+      mat-chip-set {
+        display: flex;
+      }
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+
+      .info-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        .label {
+          font-size: 12px;
+          color: #999;
+          text-transform: uppercase;
+          font-weight: 500;
+        }
+
+        .amount {
+          font-weight: 600;
+          color: #1976d2;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  mat-card-actions {
+    display: flex;
+    gap: 8px;
+  }
+}

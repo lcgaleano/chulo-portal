@@ -1,0 +1,9 @@
+.chart-card {
+  mat-card-header {
+    margin-bottom: 20px;
+  }
+
+  canvas {
+    max-height: 400px;
+  }
+}

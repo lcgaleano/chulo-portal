@@ -1,0 +1,75 @@
+<app-page-header title="Créditos" subtitle="Listado de todos los créditos del sistema"></app-page-header>
+
+<!-- Búsqueda por identificación -->
+<div class="search-container">
+  <form [formGroup]="form" class="search-form" (ngSubmit)="buscarPorIdentificacion()">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Buscar por número de identificación del cliente</mat-label>
+      <input matInput formControlName="numeroIdentificacion" placeholder="Ej: 1234567890">
+      <mat-icon matSuffix>badge</mat-icon>
+    </mat-form-field>
+
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="buscando() || (form.get('numeroIdentificacion')?.value?.length ?? 0) < 3">
+      <mat-icon>{{ buscando() ? 'hourglass_empty' : 'search' }}</mat-icon>
+      {{ buscando() ? 'Buscando...' : 'Buscar' }}
+    </button>
+
+    <button
+      *ngIf="hasBuscado()"
+      type="button"
+      mat-stroked-button
+      (click)="limpiarBusqueda()"
+      matTooltip="Ver todos los créditos">
+      <mat-icon>clear</mat-icon>
+      Limpiar
+    </button>
+  </form>
+</div>
+
+<!-- Resultados de búsqueda -->
+<ng-container *ngIf="hasBuscado()">
+  <div class="search-results-header">
+    <mat-icon color="primary">filter_list</mat-icon>
+    <span>
+      Créditos del cliente con identificación <strong>{{ identificacionBuscada() }}</strong>
+      &nbsp;·&nbsp;
+      <strong>{{ creditosBuscados().length }}</strong> resultado{{ creditosBuscados().length !== 1 ? 's' : '' }}
+    </span>
+  </div>
+
+  <div *ngIf="creditosBuscados().length > 0" class="creditos-list">
+    <app-credito-card *ngFor="let credito of creditosBuscados()" [credito]="credito"></app-credito-card>
+  </div>
+
+  <app-empty-state
+    *ngIf="creditosBuscados().length === 0"
+    title="Sin resultados"
+    message="No se encontraron créditos para la identificación ingresada"
+    icon="search_off">
+  </app-empty-state>
+</ng-container>
+
+<!-- Listado general -->
+<ng-container *ngIf="!hasBuscado()">
+  <div *ngIf="!loading() && creditos().length > 0" class="creditos-list">
+    <app-credito-card *ngFor="let credito of creditos()" [credito]="credito"></app-credito-card>
+  </div>
+
+  <app-empty-state
+    *ngIf="!loading() && creditos().length === 0"
+    title="No hay créditos"
+    message="Aún no se han registrado créditos en el sistema"
+    icon="credit_card">
+  </app-empty-state>
+</ng-container>
+
+<div class="action-buttons">
+  <button mat-raised-button color="accent" routerLink="/creditos/nuevo">
+    <mat-icon>add</mat-icon>
+    Crear Nuevo Crédito
+  </button>
+</div>

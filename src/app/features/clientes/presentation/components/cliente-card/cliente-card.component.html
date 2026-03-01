@@ -1,0 +1,36 @@
+<mat-card class="cliente-card">
+  <mat-card-header>
+    <mat-card-title>{{ cliente().nombre }} {{ cliente().apellido }}</mat-card-title>
+    <mat-card-subtitle>{{ cliente().tipoIdentificacion }} {{ cliente().numeroIdentificacion }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="info-row" *ngIf="cliente().email">
+      <span class="label">Email:</span>
+      <span>{{ cliente().email }}</span>
+    </div>
+    <div class="info-row" *ngIf="cliente().telefono">
+      <span class="label">Teléfono:</span>
+      <span>{{ cliente().telefono }}</span>
+    </div>
+    <div class="info-row" *ngIf="cliente().direccion">
+      <span class="label">Dirección:</span>
+      <span>{{ cliente().direccion }}</span>
+    </div>
+    <div class="info-row" *ngIf="cliente().creditosCount !== undefined">
+      <span class="label">Créditos:</span>
+      <span>{{ cliente().creditosCount }}</span>
+    </div>
+    <div class="info-row" *ngIf="cliente().montoTotalCreditos !== undefined">
+      <span class="label">Monto Total:</span>
+      <span>{{ cliente().montoTotalCreditos | currencyCop }}</span>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-stroked-button [routerLink]="'/clientes/' + cliente().id" color="primary">
+      <mat-icon>info</mat-icon>
+      Ver Detalle
+    </button>
+  </mat-card-actions>
+</mat-card>

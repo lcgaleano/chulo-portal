@@ -1,0 +1,16 @@
+<mat-nav-list>
+  <div class="logo-section">
+    <h2 class="app-title">Chulo Portal</h2>
+  </div>
+
+  <mat-list-item
+    *ngFor="let item of navItems"
+    [routerLink]="item.route"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: false }"
+    class="nav-item"
+  >
+    <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+    <span matListItemTitle>{{ item.label }}</span>
+  </mat-list-item>
+</mat-nav-list>

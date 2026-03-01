@@ -1,0 +1,53 @@
+.search-container {
+  background: white;
+  padding: 20px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .search-form {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+
+    .search-field {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    button {
+      margin-top: 4px;
+      height: 56px;
+      white-space: nowrap;
+    }
+  }
+}
+
+.search-results-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #e3f2fd;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: #1565c0;
+}
+
+.creditos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+
+  button mat-icon {
+    margin-right: 8px;
+  }
+}

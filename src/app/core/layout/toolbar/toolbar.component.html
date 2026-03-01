@@ -1,0 +1,13 @@
+<mat-toolbar color="primary" class="app-toolbar">
+  <button mat-icon-button (click)="onToggleSidenav()" class="toggle-button">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <h1 class="app-name">Chulo Portal - Gestión de Créditos</h1>
+
+  <span class="spacer"></span>
+
+  <div class="loading-indicator" *ngIf="isLoading()">
+    <mat-icon class="spinner">autorenew</mat-icon>
+  </div>
+</mat-toolbar>

@@ -1,0 +1,55 @@
+<app-page-header title="Detalle del Crédito" subtitle="Información completa del crédito y tabla de amortización"></app-page-header>
+
+<div *ngIf="!loading() && credito()" class="detail-container">
+  <mat-card class="credito-info">
+    <mat-card-header>
+      <mat-card-title>Información General</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="label">Estado:</span>
+          <span class="status" *ngIf="credito()?.estado">{{ credito()!.estado | estadoCredito }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Cliente:</span>
+          <span>{{ credito()?.cliente?.nombres }} {{ credito()?.cliente?.apellidos }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Monto:</span>
+          <span class="amount">{{ credito()?.monto | currencyCop }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Tasa de Interés:</span>
+          <span>{{ credito()?.tasaInteres }}% anual</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Plazo:</span>
+          <span>{{ credito()?.plazoMeses }} meses</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Cuota Mensual:</span>
+          <span class="amount">{{ credito()?.cuotaMensual | currencyCop }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Saldo Pendiente:</span>
+          <span class="amount balance">{{ credito()?.saldoPendiente | currencyCop }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Fecha de Creación:</span>
+          <span>{{ credito()?.fechaCreacion | date: 'medium' }}</span>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <app-amortizacion-table [amortizacion]="amortizacion()"></app-amortizacion-table>
+
+  <div class="action-buttons">
+    <button mat-stroked-button routerLink="/creditos">
+      <mat-icon>arrow_back</mat-icon>
+      Volver
+    </button>
+  </div>
+</div>

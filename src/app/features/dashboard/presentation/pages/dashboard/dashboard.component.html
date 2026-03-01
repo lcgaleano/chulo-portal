@@ -1,0 +1,76 @@
+<app-page-header title="Dashboard" subtitle="Resumen general de clientes y créditos"></app-page-header>
+
+<div *ngIf="!loading() && summary()" class="dashboard-container">
+  <div class="kpi-grid">
+    <app-kpi-card
+      title="Total de Clientes"
+      [value]="summary()!.totalClientes"
+      icon="people"
+      color="primary">
+    </app-kpi-card>
+
+    <app-kpi-card
+      title="Total de Créditos"
+      [value]="summary()!.totalCreditos"
+      icon="credit_card"
+      color="accent">
+    </app-kpi-card>
+
+    <app-kpi-card
+      title="Monto Total de Créditos"
+      [value]="summary()!.montoTotalCreditos"
+      icon="attach_money"
+      color="primary"
+      [isCurrency]="true">
+    </app-kpi-card>
+
+    <app-kpi-card
+      title="Créditos Activos"
+      [value]="summary()!.creditosActivoCount"
+      icon="check_circle"
+      color="primary">
+    </app-kpi-card>
+
+    <app-kpi-card
+      title="Créditos Cancelados"
+      [value]="summary()!.creditosCanceladoCount"
+      icon="done_all"
+      color="accent">
+    </app-kpi-card>
+
+    <app-kpi-card
+      title="Créditos en Mora"
+      [value]="summary()!.creditosEnMoraCount"
+      icon="warning"
+      color="warn">
+    </app-kpi-card>
+
+    <app-kpi-card
+      title="Monto en Créditos Activos"
+      [value]="summary()!.montoActivoCreditos"
+      icon="trending_up"
+      color="primary"
+      [isCurrency]="true">
+    </app-kpi-card>
+
+    <app-kpi-card
+      title="Monto en Créditos Cancelados"
+      [value]="summary()!.montoCanceladoCreditos"
+      icon="savings"
+      color="accent"
+      [isCurrency]="true">
+    </app-kpi-card>
+
+    <app-kpi-card
+      title="Monto en Créditos en Mora"
+      [value]="summary()!.montoEnMoraCreditos"
+      icon="error"
+      color="warn"
+      [isCurrency]="true">
+    </app-kpi-card>
+  </div>
+
+  <div class="chart-grid">
+    <app-creditos-chart [summary]="summary()!"></app-creditos-chart>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<mat-card class="kpi-card" [class]="'color-' + color()">
+  <mat-card-content>
+    <div class="kpi-header">
+      <h3 class="kpi-title">{{ title() }}</h3>
+      <mat-icon class="kpi-icon">{{ icon() }}</mat-icon>
+    </div>
+    <div class="kpi-value">
+      <span *ngIf="!isCurrency()">{{ value() | number }}</span>
+      <span *ngIf="isCurrency()">{{ value() | currencyCop }}</span>
+    </div>
+  </mat-card-content>
+</mat-card>

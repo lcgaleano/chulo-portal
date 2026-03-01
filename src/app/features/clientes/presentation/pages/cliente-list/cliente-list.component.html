@@ -1,0 +1,52 @@
+<app-page-header title="Buscar Cliente" subtitle="Ingresa el número de identificación del cliente"></app-page-header>
+
+<div class="search-container">
+  <form [formGroup]="form" (ngSubmit)="onSearch()" class="search-form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Número de Identificación</mat-label>
+      <input matInput formControlName="numeroIdentificacion" placeholder="Ej: 1234567890">
+      <mat-icon matSuffix>badge</mat-icon>
+    </mat-form-field>
+
+    <div class="button-group">
+      <button mat-raised-button color="primary" [disabled]="!form.valid">
+        <mat-icon>search</mat-icon>
+        Buscar
+      </button>
+      <button type="button" mat-stroked-button (click)="onClear()">
+        <mat-icon>clear</mat-icon>
+        Limpiar
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="results-container">
+  <div *ngIf="searchPerformed()">
+    <div *ngIf="cliente() && !notFound()">
+      <app-cliente-card [cliente]="cliente()!"></app-cliente-card>
+    </div>
+
+    <app-empty-state
+      *ngIf="notFound()"
+      title="Cliente no encontrado"
+      message="No se encontró un cliente con ese número de identificación"
+      icon="person_off">
+    </app-empty-state>
+  </div>
+
+  <div *ngIf="!searchPerformed()">
+    <app-empty-state
+      title="Ingresa un número de identificación"
+      message="Para comenzar, busca a un cliente por su número de identificación"
+      icon="search">
+    </app-empty-state>
+  </div>
+</div>
+
+<div class="action-buttons">
+  <button mat-raised-button color="accent" routerLink="/clientes/nuevo">
+    <mat-icon>person_add</mat-icon>
+    Crear Nuevo Cliente
+  </button>
+</div>

@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm show:*)",
+      "Bash(tail:*)",
+      "Bash(ng build:*)",
+      "Bash(curl:*)",
+      "Bash(./gradlew bootRun)",
+      "Bash(npx ng serve --open)",
+      "Bash(start chrome \"http://localhost:4200\")",
+      "Bash(python3 -c \"import sys,json; data=json.load\\(sys.stdin\\); [print\\(k\\) for k in data.get\\(''contexts'',{}\\).get\\(''application'',{}\\).get\\(''mappings'',{}\\).get\\(''dispatcherServlets'',{}\\).get\\(''dispatcherServlet'',[]\\) if ''pattern'' in str\\(k\\)]\")",
+      "Bash(xargs grep -l \"Controller\\\\|RestController\\\\|RequestMapping\")",
+      "Bash(python3 -m json.tool)",
+      "Bash(netstat -ano)",
+      "Read(//d/chulo-portal/**)",
+      "Bash(xargs -I{} taskkill /PID {} /F)",
+      "Bash(taskkill /PID 20020 /F)",
+      "Bash(cmd /c \"taskkill /PID 20020 /F\")",
+      "Bash(cmd /c \"taskkill /PID 20020 /F 2>&1 && echo OK\")",
+      "Bash(powershell -Command \"Stop-Process -Id 20020 -Force; Write-Host ''OK''\")"
+    ]
+  }
+}

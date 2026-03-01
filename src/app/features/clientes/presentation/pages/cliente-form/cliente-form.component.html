@@ -1,0 +1,90 @@
+<app-page-header title="Crear Cliente" subtitle="Ingresa los datos del nuevo cliente"></app-page-header>
+
+<div class="form-container">
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-grid">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Tipo de Identificación</mat-label>
+            <mat-select formControlName="tipoIdentificacion">
+              <mat-option *ngFor="let tipo of tiposIdentificacion" [value]="tipo.value">
+                {{ tipo.label }}
+              </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>assignment_ind</mat-icon>
+            <mat-error *ngIf="form.get('tipoIdentificacion')?.hasError('required')">
+              El tipo de identificación es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Número de Identificación</mat-label>
+            <input matInput formControlName="numeroIdentificacion" placeholder="Ej: 1234567890">
+            <mat-icon matSuffix>badge</mat-icon>
+            <mat-error *ngIf="form.get('numeroIdentificacion')?.hasError('required')">
+              El número es requerido
+            </mat-error>
+            <mat-error *ngIf="form.get('numeroIdentificacion')?.hasError('minlength')">
+              Mínimo 5 caracteres
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" placeholder="Ej: Juan">
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error *ngIf="form.get('nombre')?.hasError('required')">
+              El nombre es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Apellido</mat-label>
+            <input matInput formControlName="apellido" placeholder="Ej: Pérez García">
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" type="email" placeholder="Ej: juan@example.com">
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="form.get('email')?.hasError('email')">
+              Formato de email inválido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Teléfono</mat-label>
+            <input matInput formControlName="telefono" placeholder="Ej: 3001234567">
+            <mat-icon matSuffix>phone</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Dirección</mat-label>
+            <input matInput formControlName="direccion" placeholder="Ej: Calle 123 # 45-67 Apto 8B">
+            <mat-icon matSuffix>location_on</mat-icon>
+          </mat-form-field>
+
+        </div>
+
+        <div class="button-group">
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            [disabled]="!form.valid || submitting()">
+            <mat-icon *ngIf="!submitting()">save</mat-icon>
+            <mat-icon *ngIf="submitting()" class="spinner">autorenew</mat-icon>
+            {{ submitting() ? 'Creando...' : 'Crear Cliente' }}
+          </button>
+          <button type="button" mat-stroked-button (click)="onCancel()">
+            <mat-icon>close</mat-icon>
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

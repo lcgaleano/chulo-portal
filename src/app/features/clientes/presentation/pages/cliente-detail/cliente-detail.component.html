@@ -1,0 +1,70 @@
+<app-page-header title="Detalle del Cliente" [subtitle]="(cliente()?.nombre ?? '') + ' ' + (cliente()?.apellido ?? '')"></app-page-header>
+
+<div *ngIf="!loading() && cliente()" class="detail-container">
+  <mat-card class="cliente-info">
+    <mat-card-header>
+      <mat-card-title>Información Personal</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="label">Tipo de Identificación:</span>
+          <span>{{ cliente()?.tipoIdentificacion }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Número de Identificación:</span>
+          <span>{{ cliente()?.numeroIdentificacion }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Nombre:</span>
+          <span>{{ cliente()?.nombre }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Apellido:</span>
+          <span>{{ cliente()?.apellido }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Email:</span>
+          <span>{{ cliente()?.email }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Teléfono:</span>
+          <span>{{ cliente()?.telefono }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Dirección:</span>
+          <span>{{ cliente()?.direccion }}</span>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="creditos-section">
+    <mat-card-header>
+      <mat-card-title>Créditos ({{ creditos().length }})</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div *ngIf="creditos().length > 0" class="creditos-list">
+        <app-credito-card *ngFor="let credito of creditos()" [credito]="credito"></app-credito-card>
+      </div>
+
+      <div *ngIf="creditos().length === 0" class="empty-message">
+        <mat-icon>credit_card</mat-icon>
+        <p>Este cliente no tiene créditos registrados</p>
+        <button mat-raised-button color="primary" routerLink="/creditos/nuevo">
+          <mat-icon>add</mat-icon>
+          Crear Crédito
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="action-buttons">
+    <button mat-stroked-button routerLink="/clientes">
+      <mat-icon>arrow_back</mat-icon>
+      Volver
+    </button>
+  </div>
+</div>

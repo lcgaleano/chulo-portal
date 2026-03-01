@@ -1,0 +1,49 @@
+<mat-card class="amortizacion-card">
+  <mat-card-header>
+    <mat-card-title>Tabla de Amortización</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="table-container">
+      <table mat-table [dataSource]="amortizacion()" class="amortizacion-table">
+        <ng-container matColumnDef="cuotaNumero">
+          <th mat-header-cell *matHeaderCellDef>Cuota</th>
+          <td mat-cell *matCellDef="let element">{{ element.cuotaNumero }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="saldoInicial">
+          <th mat-header-cell *matHeaderCellDef>Saldo Inicial</th>
+          <td mat-cell *matCellDef="let element">{{ element.saldoInicial | currencyCop }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="capital">
+          <th mat-header-cell *matHeaderCellDef>Capital</th>
+          <td mat-cell *matCellDef="let element">{{ element.capital | currencyCop }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="interes">
+          <th mat-header-cell *matHeaderCellDef>Interés</th>
+          <td mat-cell *matCellDef="let element">{{ element.interes | currencyCop }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="cuota">
+          <th mat-header-cell *matHeaderCellDef>Cuota</th>
+          <td mat-cell *matCellDef="let element">{{ element.cuota | currencyCop }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="saldoFinal">
+          <th mat-header-cell *matHeaderCellDef>Saldo Final</th>
+          <td mat-cell *matCellDef="let element">{{ element.saldoFinal | currencyCop }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef>Fecha</th>
+          <td mat-cell *matCellDef="let element">{{ element.fecha | date: 'dd/MM/yyyy' }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['cuotaNumero', 'saldoInicial', 'capital', 'interes', 'cuota', 'saldoFinal', 'fecha']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['cuotaNumero', 'saldoInicial', 'capital', 'interes', 'cuota', 'saldoFinal', 'fecha'];"></tr>
+      </table>
+    </div>
+  </mat-card-content>
+</mat-card>
