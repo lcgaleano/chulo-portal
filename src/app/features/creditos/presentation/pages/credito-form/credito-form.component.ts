@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -30,11 +30,12 @@ import { PageHeaderComponent } from '../../../../../shared/components/page-heade
   templateUrl: './credito-form.component.html',
   styleUrls: ['./credito-form.component.scss']
 })
-export class CreditoFormComponent {
+export class CreditoFormComponent implements OnInit {
   private createCreditoUseCase = inject(CreateCreditoUseCase);
   private getClienteUseCase = inject(GetClienteUseCase);
   private notificationService = inject(NotificationService);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
   private fb = inject(FormBuilder);
 
   submitting = signal(false);
@@ -45,10 +46,19 @@ export class CreditoFormComponent {
     numeroIdentificacionCliente: ['', [Validators.required, Validators.minLength(5)]],
     monto: ['', [Validators.required, Validators.min(1)]],
     tasaInteres: ['', [Validators.required, Validators.min(0), Validators.max(100)]],
+    tasaMora: ['', [Validators.required, Validators.min(0), Validators.max(100)]],
     plazoMeses: ['', [Validators.required, Validators.min(1), Validators.max(360)]],
     fechaDesembolso: [this.hoy(), Validators.required],
     fechaVencimiento: ['', Validators.required]
   });
+
+  ngOnInit(): void {
+    const clienteId = this.route.snapshot.queryParamMap.get('clienteId');
+    if (clienteId) {
+      this.form.get('numeroIdentificacionCliente')?.setValue(clienteId);
+      this.buscarCliente();
+    }
+  }
 
   private hoy(): string {
     return new Date().toISOString().split('T')[0];
@@ -97,20 +107,24 @@ export class CreditoFormComponent {
     this.submitting.set(true);
     const v = this.form.value;
 
-    this.createCreditoUseCase.execute({
+    const payload = {
       numeroIdentificacionCliente: v.numeroIdentificacionCliente!,
       monto: Number(v.monto),
       tasaInteres: Number(v.tasaInteres),
+      tasaMora: Number(v.tasaMora),
       plazoMeses: Number(v.plazoMeses),
       fechaDesembolso: v.fechaDesembolso!,
       fechaVencimiento: v.fechaVencimiento!
-    }).subscribe({
+    };
+    console.log('Payload crédito:', payload);
+    this.createCreditoUseCase.execute(payload).subscribe({
       next: (credito) => {
         this.notificationService.success('Crédito creado exitosamente');
         this.submitting.set(false);
         this.router.navigate(['/creditos', credito.id]);
       },
-      error: () => {
+      error: (err) => {
+        console.error('Error crear crédito:', err?.error);
         this.submitting.set(false);
         this.notificationService.error('Error al crear el crédito');
       }

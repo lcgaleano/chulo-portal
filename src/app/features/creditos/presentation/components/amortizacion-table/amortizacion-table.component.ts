@@ -14,5 +14,5 @@ import { CurrencyPipe } from '../../../../../shared/pipes/currency-cop.pipe';
 })
 export class AmortizacionTableComponent {
   amortizacion = input.required<CuotaAmortizacion[]>();
-  displayedColumns: string[] = ['cuotaNumero', 'saldoInicial', 'capital', 'interes', 'cuota', 'saldoFinal', 'fecha'];
+  displayedColumns: string[] = ['numeroCuota', 'montoCuota', 'capitalCuota', 'interesCuota', 'mora', 'montoPagado', 'fechaVencimiento', 'estado'];
 }

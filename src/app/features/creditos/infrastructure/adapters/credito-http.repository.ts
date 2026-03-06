@@ -35,6 +35,6 @@ export class CreditoHttpRepository extends CreditoRepository {
   }
 
   override getAmortizacion(creditoId: string): Observable<CuotaAmortizacion[]> {
-    return this.http.get<CuotaAmortizacion[]>(`${this.apiUrl}/${creditoId}/amortizacion`);
+    return this.http.get<CuotaAmortizacion[]>(`${this.apiUrl}/${creditoId}/cuotas`);
   }
 }

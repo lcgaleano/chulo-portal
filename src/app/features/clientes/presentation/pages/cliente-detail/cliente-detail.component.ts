@@ -46,14 +46,14 @@ export class ClienteDetailComponent implements OnInit {
       if (currentCliente) {
         this.loadCreditos(currentCliente.id);
       }
-    });
+    }, { allowSignalWrites: true });
   }
 
   ngOnInit(): void {
     this.loading.set(true);
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.getClienteUseCase.execute(id).subscribe({
+      this.getClienteUseCase.executeByIdentificacion(id).subscribe({
         next: (cliente) => {
           this.cliente.set(cliente);
           this.loading.set(false);

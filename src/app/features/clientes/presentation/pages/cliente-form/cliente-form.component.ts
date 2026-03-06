@@ -50,7 +50,7 @@ export class ClienteFormComponent {
     tipoIdentificacion: ['', Validators.required],
     numeroIdentificacion: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
     nombre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
-    apellido: ['', [Validators.maxLength(100)]],
+    apellido: ['', [Validators.required, Validators.maxLength(100)]],
     email: ['', [Validators.email, Validators.maxLength(150)]],
     telefono: ['', [Validators.maxLength(20)]],
     direccion: ['', [Validators.maxLength(200)]]
@@ -67,7 +67,7 @@ export class ClienteFormComponent {
       next: (cliente) => {
         this.notificationService.success(`Cliente ${cliente.nombre} ${cliente.apellido ?? ''} creado exitosamente`);
         this.submitting.set(false);
-        this.router.navigate(['/clientes', cliente.id]);
+        this.router.navigate(['/clientes', cliente.numeroIdentificacion]);
       },
       error: () => {
         this.submitting.set(false);

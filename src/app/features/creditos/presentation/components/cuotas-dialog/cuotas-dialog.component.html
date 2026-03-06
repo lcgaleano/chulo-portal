@@ -1,0 +1,25 @@
+<h2 mat-dialog-title class="dialog-title">
+  <mat-icon>calendar_month</mat-icon>
+  Cuotas del Crédito #{{ data.creditoId }}
+</h2>
+
+<mat-dialog-content>
+  <div *ngIf="loading()" class="loading-container">
+    <mat-spinner diameter="40"></mat-spinner>
+    <p>Cargando cuotas...</p>
+  </div>
+
+  <div *ngIf="error() && !loading()" class="error-container">
+    <mat-icon color="warn">error_outline</mat-icon>
+    <p>No se pudieron cargar las cuotas. Intenta de nuevo.</p>
+  </div>
+
+  <app-amortizacion-table *ngIf="!loading() && !error()" [amortizacion]="cuotas()"></app-amortizacion-table>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cerrar()">
+    <mat-icon>close</mat-icon>
+    Cerrar
+  </button>
+</mat-dialog-actions>

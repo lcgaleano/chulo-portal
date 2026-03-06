@@ -5,6 +5,10 @@ import { GetClienteUseCase } from './application/get-cliente.usecase';
 import { ListClientesUseCase } from './application/list-clientes.usecase';
 import { CreateClienteUseCase } from './application/create-cliente.usecase';
 import { ClientesShellComponent } from './presentation/clientes-shell.component';
+import { CreditoRepository } from '../creditos/domain/ports/credito.repository';
+import { CreditoHttpRepository } from '../creditos/infrastructure/adapters/credito-http.repository';
+import { ListCreditosUseCase } from '../creditos/application/list-creditos.usecase';
+import { GetAmortizacionUseCase } from '../creditos/application/get-amortizacion.usecase';
 
 export const CLIENTES_ROUTES: Routes = [
   {
@@ -12,9 +16,12 @@ export const CLIENTES_ROUTES: Routes = [
     component: ClientesShellComponent,
     providers: [
       { provide: ClienteRepository, useClass: ClienteHttpRepository },
+      { provide: CreditoRepository, useClass: CreditoHttpRepository },
       GetClienteUseCase,
       ListClientesUseCase,
-      CreateClienteUseCase
+      CreateClienteUseCase,
+      ListCreditosUseCase,
+      GetAmortizacionUseCase
     ],
     children: [
       {

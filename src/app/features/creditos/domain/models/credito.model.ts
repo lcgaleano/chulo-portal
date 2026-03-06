@@ -5,18 +5,21 @@ export interface Credito {
   clienteId: string;
   monto: number;
   tasaInteres: number;
+  tasaMora: number;
   plazoMeses: number;
   estado: EstadoCredito;
   saldoPendiente: number;
-  cuotaMensual: number;
+  fechaDesembolso: string;
+  fechaVencimiento: string;
   fechaCreacion: string;
-  fechaUltimaActualizacion: string;
+  fechaActualizacion: string;
 }
 
 export interface CreateCreditoCommand {
   numeroIdentificacionCliente: string;
   monto: number;
   tasaInteres: number;
+  tasaMora: number;
   plazoMeses: number;
   fechaDesembolso: string;
   fechaVencimiento: string;
@@ -32,11 +35,17 @@ export interface CreditoResponse extends Credito {
 }
 
 export interface CuotaAmortizacion {
-  cuotaNumero: number;
-  saldoInicial: number;
-  capital: number;
-  interes: number;
-  cuota: number;
-  saldoFinal: number;
-  fecha: string;
+  id: number;
+  creditoId: number;
+  numeroCuota: number;
+  montoCuota: number;
+  capitalCuota: number;
+  interesCuota: number;
+  montoPagado: number;
+  mora: number;
+  fechaVencimiento: string;
+  fechaPago: string | null;
+  estado: string;
+  fechaCreacion: string;
+  fechaActualizacion: string;
 }

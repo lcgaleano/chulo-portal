@@ -14,7 +14,7 @@
         </div>
         <div class="info-item">
           <span class="label">Cliente:</span>
-          <span>{{ credito()?.cliente?.nombres }} {{ credito()?.cliente?.apellidos }}</span>
+          <span>{{ credito()?.cliente?.nombre }} {{ credito()?.cliente?.apellido }}</span>
         </div>
         <div class="info-item">
           <span class="label">Monto:</span>
@@ -22,19 +22,27 @@
         </div>
         <div class="info-item">
           <span class="label">Tasa de Interés:</span>
-          <span>{{ credito()?.tasaInteres }}% anual</span>
+          <span>{{ credito()?.tasaInteres }}%</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Tasa de Mora:</span>
+          <span>{{ credito()?.tasaMora }}%</span>
         </div>
         <div class="info-item">
           <span class="label">Plazo:</span>
           <span>{{ credito()?.plazoMeses }} meses</span>
         </div>
         <div class="info-item">
-          <span class="label">Cuota Mensual:</span>
-          <span class="amount">{{ credito()?.cuotaMensual | currencyCop }}</span>
-        </div>
-        <div class="info-item">
           <span class="label">Saldo Pendiente:</span>
           <span class="amount balance">{{ credito()?.saldoPendiente | currencyCop }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Fecha Desembolso:</span>
+          <span>{{ credito()?.fechaDesembolso | date: 'mediumDate' }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Fecha Vencimiento:</span>
+          <span>{{ credito()?.fechaVencimiento | date: 'mediumDate' }}</span>
         </div>
         <div class="info-item">
           <span class="label">Fecha de Creación:</span>

@@ -27,8 +27,8 @@
         <span>{{ credito().plazoMeses }} meses</span>
       </div>
       <div class="info-item">
-        <span class="label">Cuota Mensual:</span>
-        <span class="amount">{{ credito().cuotaMensual | currencyCop }}</span>
+        <span class="label">Tasa de Mora:</span>
+        <span>{{ credito().tasaMora }}%</span>
       </div>
       <div class="info-item">
         <span class="label">Saldo Pendiente:</span>
@@ -41,6 +41,10 @@
     <button mat-stroked-button [routerLink]="'/creditos/' + credito().id" color="primary">
       <mat-icon>info</mat-icon>
       Ver Detalle
+    </button>
+    <button mat-raised-button color="accent" (click)="verCuotas()">
+      <mat-icon>calendar_month</mat-icon>
+      Ver Cuotas
     </button>
   </mat-card-actions>
 </mat-card>

@@ -28,9 +28,13 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <button mat-stroked-button [routerLink]="'/clientes/' + cliente().id" color="primary">
+    <button mat-stroked-button [routerLink]="'/clientes/' + cliente().numeroIdentificacion" color="primary">
       <mat-icon>info</mat-icon>
       Ver Detalle
+    </button>
+    <button mat-stroked-button [routerLink]="'/creditos/nuevo'" [queryParams]="{ clienteId: cliente().numeroIdentificacion }" color="accent">
+      <mat-icon>add_card</mat-icon>
+      Nuevo Crédito
     </button>
   </mat-card-actions>
 </mat-card>
