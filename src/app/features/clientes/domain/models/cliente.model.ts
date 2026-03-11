@@ -7,6 +7,9 @@ export interface Cliente {
   email: string;
   telefono: string;
   direccion?: string;
+  fechaNacimiento?: string;
+  fechaExpedicionDocumento?: string;
+  lugarExpedicionDocumento?: string;
   fechaCreacion?: string;
 }
 
@@ -18,6 +21,9 @@ export interface CreateClienteCommand {
   email: string;
   telefono: string;
   direccion: string;
+  fechaNacimiento?: string;
+  fechaExpedicionDocumento?: string;
+  lugarExpedicionDocumento?: string;
 }
 
 export interface ClienteResponse extends Cliente {

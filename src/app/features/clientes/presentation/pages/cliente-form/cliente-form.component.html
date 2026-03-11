@@ -67,6 +67,24 @@
             <mat-icon matSuffix>location_on</mat-icon>
           </mat-form-field>
 
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha de Nacimiento</mat-label>
+            <input matInput formControlName="fechaNacimiento" type="date">
+            <mat-icon matSuffix>cake</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha de Expedición del Documento</mat-label>
+            <input matInput formControlName="fechaExpedicionDocumento" type="date">
+            <mat-icon matSuffix>event</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Lugar de Expedición del Documento</mat-label>
+            <input matInput formControlName="lugarExpedicionDocumento" placeholder="Ej: Bogotá D.C.">
+            <mat-icon matSuffix>place</mat-icon>
+          </mat-form-field>
+
         </div>
 
         <div class="button-group">

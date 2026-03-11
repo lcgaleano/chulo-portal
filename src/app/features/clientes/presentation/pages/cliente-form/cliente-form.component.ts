@@ -53,7 +53,10 @@ export class ClienteFormComponent {
     apellido: ['', [Validators.required, Validators.maxLength(100)]],
     email: ['', [Validators.email, Validators.maxLength(150)]],
     telefono: ['', [Validators.maxLength(20)]],
-    direccion: ['', [Validators.maxLength(200)]]
+    direccion: ['', [Validators.maxLength(200)]],
+    fechaNacimiento: [''],
+    fechaExpedicionDocumento: [''],
+    lugarExpedicionDocumento: ['', [Validators.maxLength(200)]]
   });
 
   onSubmit(): void {

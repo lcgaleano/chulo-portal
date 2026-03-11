@@ -36,6 +36,18 @@
           <span class="label">Dirección:</span>
           <span>{{ cliente()?.direccion }}</span>
         </div>
+        <div class="info-item">
+          <span class="label">Fecha de Nacimiento:</span>
+          <span>{{ cliente()?.fechaNacimiento | date:'dd/MM/yyyy' }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Fecha de Expedición:</span>
+          <span>{{ cliente()?.fechaExpedicionDocumento | date:'dd/MM/yyyy' }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Lugar de Expedición:</span>
+          <span>{{ cliente()?.lugarExpedicionDocumento }}</span>
+        </div>
       </div>
     </mat-card-content>
   </mat-card>
